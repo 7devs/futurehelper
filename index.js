@@ -16,7 +16,7 @@ wechat.createMenu(require('./lib/menu.json'));
 
 app.use('/wxapi', require('./lib/routers/wxapi.js'));
 app.use('/pages', require('./lib/routers/pages.js'));
-app.use('/pages', require('./lib/routers/pages.js'));
+
 
 app.set('views', path.join(__dirname, 'lib/views'));
 // 设置模版引擎
