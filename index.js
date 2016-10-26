@@ -2,13 +2,16 @@ var app = require('express')(),
     path = require('path'),
     conf = require('./lib/config'),
     wechat = require('./lib/wechat'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mongoose=require('mongoose');
 
+mongoose.connect('mongodb://localhost/futures');
+mongoose.connection.on('open',function(){
+      console.log('Mongoose connected.')
+    });
 app.use(bodyParser.urlencoded({
     extended:true
-}
-
-));
+}));
 
 wechat(conf.wechat);
 
@@ -16,7 +19,6 @@ wechat.createMenu(require('./lib/menu.json'));
 
 app.use('/wxapi', require('./lib/routers/wxapi.js'));
 app.use('/pages', require('./lib/routers/pages.js'));
-
 
 app.set('views', path.join(__dirname, 'lib/views'));
 // 设置模版引擎

@@ -6,7 +6,7 @@
               {
                   "name": "业绩排行",
                   "type": "view",
-                  "url": "http://wechatdev.yokeneng.com/8101/pages/one"
+                  "url": "http://wechatdev.yokeneng.com/8101/pages/rank"
               },
               {
                   "name": "品种排行",
@@ -22,7 +22,7 @@
               {
                   "name": "高手战绩",
                   "type": "view",
-                  "url": "http://wechatdev.yokeneng.com/8101/pages/two"
+                  "url": "http://wechatdev.yokeneng.com/8101/pages/position"
               },
               {
                   "name": "业绩报告",
@@ -37,7 +37,7 @@
                 {
                     "name": "我的业绩",
                     "type": "view",
-                    "url": "http://wechatdev.yokeneng.com/8101/pages/three"
+                    "url": "http://wechatdev.yokeneng.com/8101/pages/user"
 
                 },
                 {
@@ -48,7 +48,7 @@
                 {
                     "name": "我的账号",
                     "type": "view",
-                    "url": "http://wechatdev.yokeneng.com/8101/pages/four"
+                    "url": "http://wechatdev.yokeneng.com/8101/pages/account"
 
                 }
             ]

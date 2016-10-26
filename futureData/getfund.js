@@ -32,6 +32,13 @@ var DailyFundSchema = new Schema({
     dynamicFund: {
         type: Number
     }, //当日出入金（人民币）;
+    earning:{
+      type:Number
+    },
+    earningRate:{
+      type:String,
+      index:true
+    }
 });
 var DailyFund = mongoose.model('DailyFund', DailyFundSchema);
 
@@ -56,13 +63,20 @@ function saveFund(file, callback) {
 
         var userId = data.match(regex1)[0].split(':')[1].trim();
         var tradeDate = data.match(regex2)[0].split(':')[1].trim();
+        var yesterdayFund=Number(data.match(regex3)[0].split(':')[1].trim());
+        var todayFund=Number(data.match(regex4)[0].split(':')[1].trim());
+        var dynFund=Number(data.match(regex5)[0].split(':')[1].trim());
+        var earning=(todayFund-yesterdayFund+dynFund).toFixed(2);
+        var earningRate=(earning/(yesterdayFund+dynFund)).toFixed(4);
         var dailyFund = new DailyFund({
             userId: userId,
             tradeDate: tradeDate,
-            previousFund: Number(data.match(regex3)[0].split(':')[1].trim()),
-            presentFund: Number(data.match(regex4)[0].split(':')[1].trim()),
+            previousFund: yesterdayFund,
+            presentFund: todayFund,
             riskdegree:data.match(regex6)[0].split(':')[1].trim(),
-            dynamicFund: Number(data.match(regex5)[0].split(':')[1].trim())
+            dynamicFund: dynFund,
+            earning:earning,
+            earningRate:earningRate
         });
         dailyFund.save(function(err) {
             console.log('Done');
